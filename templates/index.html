@@ -5,5 +5,14 @@
 </head>
 <body>
 	<h1>Face Detection using OpenCV</h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+	$.ajax({
+      method: "GET",
+      url: {{url_for('findEmotion')}}
+    }).done(function() {
+       document.getElementsByTagName("h1")[0].innerHTML = "tata";
+    });
+    </script>
 </body>
 </html>

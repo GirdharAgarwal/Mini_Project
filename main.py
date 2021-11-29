@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/findEmotion')
+@app.route('/findEmotion/')
 def findEmotion():
     cam = cv2.VideoCapture(0)
     
@@ -47,6 +47,7 @@ def findEmotion():
     predictions=DeepFace.analyze(img)
     plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB)) ##RGB
     emotion=predictions['dominant_emotion']
+    print(emotion)
     cv2.destroyAllWindows()
     return emotion
 
