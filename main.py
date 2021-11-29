@@ -38,10 +38,10 @@ def findEmotion():
             print("{} written!".format(img_name))
             img_counter += 1
     
-    print("tanisha")
+    #print("tanisha")
     cam.release()
     
-    print("girdhar")
+    #print("girdhar")
     img_counter -=1
     img = cv2.imread("opencv_frame_"+str(img_counter)+".png")
     predictions=DeepFace.analyze(img)
