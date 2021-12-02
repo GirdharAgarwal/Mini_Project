@@ -16,9 +16,6 @@ def findEmotion():
     cam = cv2.VideoCapture(0)
     
     cv2.namedWindow("test")
-    
-    img_counter = 0
-     
     while True:
         ret, frame = cam.read()
         if not ret:
@@ -30,26 +27,16 @@ def findEmotion():
         if k%256 == 27:
             # ESC pressed
             print("Escape hit, closing...")
+            return "no-emotion"
             break
-        elif k%256 == 32:
-            # SPACE pressed
-            img_name = "opencv_frame_{}.png".format(img_counter)
-            cv2.imwrite(img_name, frame)
-            print("{} written!".format(img_name))
-            img_counter += 1
-    
-    print("tanisha")
-    cam.release()
-    
-    print("girdhar")
-    img_counter -=1
-    img = cv2.imread("opencv_frame_"+str(img_counter)+".png")
-    predictions=DeepFace.analyze(img)
-    plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB)) ##RGB
-    emotion=predictions['dominant_emotion']
-    print(emotion)
-    cv2.destroyAllWindows()
-    return emotion
+        elif k%256 == 13:
+            # ENTER pressed
+            cam.release()
+            predictions=DeepFace.analyze(frame)
+            emotion=predictions['dominant_emotion']
+            print(emotion)
+            cv2.destroyAllWindows()
+            return emotion
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port='5000', debug='True')
