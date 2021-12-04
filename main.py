@@ -33,11 +33,15 @@ def findEmotion():
         elif k%256 == 13:
             # ENTER pressed
             cam.release()
-            predictions=DeepFace.analyze(frame)
+            cv2.imwrite('Frame.jpg',frame)
             cv2.destroyAllWindows()
+            img = cv2.imread("Frame.jpg")
+            predictions=DeepFace.analyze(img,actions = ["emotion"])
+#            cv2.destroyAllWindows()
             emotion=predictions['dominant_emotion']
             break
     p.MusicPlayer(emotion)
+    return emotion
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port='5000', debug='True')

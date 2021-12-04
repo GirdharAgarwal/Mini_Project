@@ -7,7 +7,7 @@ def MusicPlayer(emotion):
     music_player = tkr.Tk() 
     music_player.title(emotion)
     music_player.geometry('450x350')
-    directory="/music/"+str(emotion)
+    directory="C:/Users/GIRDHAR AGARWAL/Desktop/project/music/"+str(emotion)
     print(directory)
     os.chdir(directory) #it permits to chenge the current dir
     song_list = os.listdir() #it returns the list of files song
