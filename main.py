@@ -1,10 +1,9 @@
-from flask import Flask, render_template, Response
-import pyautogui
+from flask import Flask, render_template
 import cv2
+import pyautogui
 from camera import VideoCamera
 from deepface import DeepFace
 import player as p
-import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
@@ -15,8 +14,7 @@ def index():
 @app.route('/findEmotion/')
 def findEmotion():
     cam = cv2.VideoCapture(0)
-    
-    cv2.namedWindow("test")
+    cv2.namedWindow("test", cv2.WINDOW_FULLSCREEN )
     while True:
         ret, frame = cam.read()
         if not ret:
@@ -28,15 +26,13 @@ def findEmotion():
         if k%256 == 27:
             # ESC pressed
             print("Escape hit, closing...")
-            emotion="no-emotion"
+            emotion="neutral"
             break
         elif k%256 == 13:
             # ENTER pressed
             cam.release()
-            cv2.imwrite('Frame.jpg',frame)
+            predictions=DeepFace.analyze(frame,actions = ["emotion"])
             cv2.destroyAllWindows()
-            img = cv2.imread("Frame.jpg")
-            predictions=DeepFace.analyze(img,actions = ["emotion"])
 #            cv2.destroyAllWindows()
             emotion=predictions['dominant_emotion']
             break

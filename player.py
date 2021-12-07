@@ -6,8 +6,8 @@ import os #it permits to interact with the operating system
 def MusicPlayer(emotion):
     music_player = tkr.Tk() 
     music_player.title(emotion)
-    music_player.geometry('450x350')
-    directory="C:/Users/GIRDHAR AGARWAL/Desktop/project/music/"+str(emotion)
+    music_player.geometry('700x700')
+    directory="C:/Users/GIRDHAR AGARWAL/Desktop/mini_project/music/"+str(emotion)
     print(directory)
     os.chdir(directory) #it permits to chenge the current dir
     song_list = os.listdir() #it returns the list of files song
@@ -39,5 +39,5 @@ def MusicPlayer(emotion):
     Button2.pack(fill='x')
     Button3.pack(fill='x')
     Button4.pack(fill='x')
-    play_list.pack(fill='both', expand='yes')
+    play_list.pack(fill='x')
     music_player.mainloop()
